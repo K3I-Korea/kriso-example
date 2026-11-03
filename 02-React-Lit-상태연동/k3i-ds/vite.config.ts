@@ -2,7 +2,8 @@ import { defineConfig } from "vite";
 import { resolve } from "node:path";
 
 export default defineConfig({
-  // `npm run dev` → demo/index.html 을 띄움
+  // 개발 서버의 기준 폴더. `npm run dev` 를 하면 루트 index.html(http://localhost:5173)과
+  // demo/react.html(/demo/react.html)이 모두 서빙된다.
   root: ".",
   build: {
     outDir: "dist",
