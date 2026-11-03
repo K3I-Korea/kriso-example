@@ -1,0 +1,11 @@
+{
+  "id": "engine",
+  "title": "기관 상세",
+  "layout": "l2-split",
+  "slots": {
+    "kpi-1":  { "panel": "value",  "title": "주기관 회전수", "bind": { "value": "rpm" } },
+    "kpi-2":  { "panel": "value",  "title": "배기 온도",    "bind": { "value": "exhaust" } },
+    "kpi-3":  { "panel": "value",  "title": "윤활유 압력",  "bind": { "value": "lube" } },
+    "detail": { "panel": "rudder", "title": "타각 (참고)",  "bind": { "angle": "rudder" } }
+  }
+}

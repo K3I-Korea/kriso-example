@@ -1,0 +1,29 @@
+/* 자동 생성 — design/tokens.json 을 수정하고 npm run tokens 를 실행하세요 */
+:root {
+  --k3i-color-surface: var(--container-background-color);
+  --k3i-color-surface-section: var(--container-section-color);
+  --k3i-color-backdrop: var(--container-backdrop-color);
+  --k3i-color-text: var(--element-active-color);
+  --k3i-color-text-muted: var(--element-neutral-color);
+  --k3i-color-accent: var(--element-active-enhanced-color);
+  --k3i-color-border: var(--border-outline-color);
+  --k3i-color-divider: var(--border-divider-color);
+  --k3i-color-neutral: var(--element-inactive-color);
+  --k3i-color-alarm: var(--alert-alarm-color);
+  --k3i-color-warning: var(--alert-warning-color);
+  --k3i-color-caution: var(--alert-caution-color);
+  --k3i-color-manual: var(--element-active-enhanced-color);
+  --k3i-radius-md: var(--border-radius-br-8);
+  --k3i-radius-lg: var(--border-radius-br-12);
+  --k3i-space-1: 4px;
+  --k3i-space-2: 8px;
+  --k3i-space-3: 12px;
+  --k3i-space-4: 16px;
+  --k3i-space-6: 24px;
+  --k3i-stroke-state: 2px;
+  --k3i-stroke-manual-bar: 4px;
+  --k3i-font-family: 'Noto Sans', sans-serif;
+  --k3i-font-label: 600 13px/18px 'Noto Sans', sans-serif;
+  --k3i-font-title: 600 16px/24px 'Noto Sans', sans-serif;
+  --k3i-font-badge: 600 11px/16px 'Noto Sans', sans-serif;
+}

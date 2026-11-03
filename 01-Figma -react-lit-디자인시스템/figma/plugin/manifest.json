@@ -1,0 +1,9 @@
+{
+  "name": "ds Token Importer",
+  "id": "ds-token-importer-local",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] }
+}

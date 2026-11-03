@@ -1,0 +1,6 @@
+{
+  "codeConnect": {
+    "parser": "html",
+    "include": ["figma/code-connect/**/*.figma.ts"]
+  }
+}

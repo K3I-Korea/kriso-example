@@ -1,0 +1,12 @@
+{
+  "$description": "값 하나가 가질 수 있는 상태 6종 (발표자료 40장 '상태 규칙'). 색+형태+문자 3중 표기, 우선순위로 하나만 표시. 상태는 데이터 계층(src/domain)이 결정하고 패널은 그리기만 한다.",
+  "priority": ["invalid", "alarm", "stale", "degraded", "manual", "normal"],
+  "states": {
+    "normal":   { "token": "text",    "shape": "none",        "text": "" },
+    "degraded": { "token": "caution", "shape": "dashed-border", "text": "품질 저하" },
+    "stale":    { "token": "caution", "shape": "dim-value",   "text": "갱신 없음 {age}s" },
+    "invalid":  { "token": "alarm",   "shape": "hide-scale",  "text": "신호 없음" },
+    "alarm":    { "token": "alarm",   "shape": "strong-border", "text": "{reason}" },
+    "manual":   { "token": "manual",  "shape": "left-bar",    "text": "수동" }
+  }
+}

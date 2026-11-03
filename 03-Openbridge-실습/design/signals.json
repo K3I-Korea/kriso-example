@@ -1,0 +1,15 @@
+{
+  "$description": "신호 카탈로그 (실습용 가정값). 실제 과제에서는 kass-signal-catalog 와 분야5 MQTT 스키마로 교체. ttlMs 를 넘기면 stale, 임계를 넘으면 alarm.",
+  "signals": {
+    "hdg":     { "topic": "vessel/nav/heading",            "label": "HDG",       "unit": "°",  "fractionDigits": 1, "maxDigits": 3, "ttlMs": 2000 },
+    "cog":     { "topic": "vessel/nav/cog",                "label": "COG",       "unit": "°",  "fractionDigits": 1, "maxDigits": 3, "ttlMs": 2000 },
+    "sog":     { "topic": "vessel/nav/sog",                "label": "SOG",       "unit": "kn", "fractionDigits": 1, "maxDigits": 2, "ttlMs": 2000 },
+    "rudder":  { "topic": "vessel/steering/rudder",        "label": "RUDDER",    "unit": "°",  "fractionDigits": 1, "maxDigits": 2, "ttlMs": 2000 },
+    "rpm":     { "topic": "vessel/engine/me1/rpm",         "label": "M/E RPM",   "unit": "rpm","fractionDigits": 0, "maxDigits": 3, "ttlMs": 3000,
+                 "limits": { "caution": 720, "warning": 760 } },
+    "exhaust": { "topic": "vessel/engine/me1/exhaust-temp","label": "EXH. TEMP", "unit": "°C", "fractionDigits": 0, "maxDigits": 3, "ttlMs": 3000,
+                 "limits": { "caution": 400, "warning": 420, "alarm": 440 } },
+    "lube":    { "topic": "vessel/engine/me1/lube-press",  "label": "LUBE OIL",  "unit": "bar","fractionDigits": 1, "maxDigits": 1, "ttlMs": 3000,
+                 "limitsBelow": { "warning": 2.5, "alarm": 2.0 } }
+  }
+}

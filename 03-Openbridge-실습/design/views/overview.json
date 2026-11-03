@@ -1,0 +1,14 @@
+{
+  "$description": "View 층 — 화면구성정의. 어떤 레이아웃의 어느 슬롯에 어떤 패널을, 어떤 신호로 채우는지 선언한다.",
+  "id": "overview",
+  "title": "항해 개요",
+  "layout": "l1-grid",
+  "slots": {
+    "primary":   { "panel": "heading", "title": "침로",       "bind": { "hdg": "hdg", "cog": "cog", "sog": "sog" } },
+    "secondary": { "panel": "rudder",  "title": "타각",       "bind": { "angle": "rudder" } },
+    "tertiary":  { "panel": "value",   "title": "대지속력",   "bind": { "value": "sog" } },
+    "kpi-1":     { "panel": "value",   "title": "주기관 회전수", "bind": { "value": "rpm" } },
+    "kpi-2":     { "panel": "value",   "title": "배기 온도",  "bind": { "value": "exhaust" } },
+    "kpi-3":     { "panel": "value",   "title": "윤활유 압력", "bind": { "value": "lube" } }
+  }
+}

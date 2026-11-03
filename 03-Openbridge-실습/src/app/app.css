@@ -1,0 +1,120 @@
+/* 앱 골격 스타일 — 이 파일도 색 리터럴 없이 토큰만 사용 */
+@font-face {
+  font-family: "Noto Sans";
+  src: url(/NotoSans.ttf) format("truetype");
+  font-weight: 400 700;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+body {
+  font-family: var(--k3i-font-family);
+  background: var(--k3i-color-backdrop);
+  color: var(--k3i-color-text);
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.brilliance {
+  position: absolute;
+  top: 52px;
+  right: 8px;
+  z-index: 10;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--k3i-space-2);
+  align-items: center;
+  padding: var(--k3i-space-2) var(--k3i-space-3);
+  border-bottom: 1px solid var(--k3i-color-divider);
+}
+.tabs button {
+  font: var(--k3i-font-label);
+  color: var(--k3i-color-text-muted);
+  background: transparent;
+  border: 1px solid var(--k3i-color-border);
+  border-radius: var(--k3i-radius-md);
+  padding: var(--k3i-space-1) var(--k3i-space-3);
+  cursor: pointer;
+}
+.tabs button.on {
+  color: var(--k3i-color-text);
+  background: var(--k3i-color-surface);
+  border-color: var(--k3i-color-accent);
+}
+.tabs .hint {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--k3i-color-text-muted);
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--k3i-space-3);
+  padding: var(--k3i-space-3);
+}
+main.with-tools {
+  grid-template-columns: 1fr 360px;
+}
+.view {
+  min-height: 0;
+}
+.tools {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k3i-space-3);
+  overflow: auto;
+}
+
+.card {
+  background: var(--k3i-color-surface);
+  border: 1px solid var(--k3i-color-border);
+  border-radius: var(--k3i-radius-lg);
+  padding: var(--k3i-space-3);
+}
+.card h4 {
+  margin: 0 0 var(--k3i-space-2);
+  font: var(--k3i-font-title);
+}
+.card h4 small {
+  display: block;
+  font: var(--k3i-font-badge);
+  color: var(--k3i-color-text-muted);
+}
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.card th,
+.card td {
+  text-align: left;
+  padding: 3px 4px;
+  border-bottom: 1px solid var(--k3i-color-divider);
+  vertical-align: top;
+}
+.mono {
+  font-family: ui-monospace, monospace;
+}
+.chosen {
+  color: var(--k3i-color-accent);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.stats {
+  margin: var(--k3i-space-2) 0 0;
+  font-size: 11px;
+  color: var(--k3i-color-text-muted);
+}

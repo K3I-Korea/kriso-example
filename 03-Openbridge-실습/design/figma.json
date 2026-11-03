@@ -1,0 +1,20 @@
+{
+  "$description": "Figma 연결 정보. Claude Code 가 Figma MCP 로 작업할 때 이 파일의 URL 을 사용한다. 빈 값은 직접 채워야 한다.",
+  "openbridgeLibraryUrl": "",
+  "openbridgeLibraryVersion": "6.x (openbridge.no 에서 최신 Figma 라이브러리 링크 확인)",
+  "k3iFileUrl": "",
+  "pages": {
+    "tokens": "Tokens",
+    "states": "States",
+    "layouts": "Layouts",
+    "views": "Views"
+  },
+  "naming": {
+    "variableCollection": "K3I",
+    "panelComponentSet": "k3i-{panel}-panel",
+    "stateVariant": "state",
+    "layoutFrame": "layout/{layout}",
+    "slotFrame": "{slot}",
+    "viewFrame": "view/{id}"
+  }
+}

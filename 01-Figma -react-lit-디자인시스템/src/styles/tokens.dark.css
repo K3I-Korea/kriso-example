@@ -1,0 +1,14 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root[data-theme="dark"], .ds-theme-dark {
+  --ds-semantic-primary: var(--ds-color-brand-300);
+  --ds-semantic-primary-hover: var(--ds-color-brand-50);
+  --ds-semantic-on-primary: var(--ds-color-gray-900);
+  --ds-semantic-surface: var(--ds-color-gray-900);
+  --ds-semantic-surface-alt: var(--ds-color-gray-800);
+  --ds-semantic-border: var(--ds-color-gray-600);
+  --ds-semantic-text: var(--ds-color-gray-50);
+  --ds-semantic-text-muted: var(--ds-color-gray-400);
+}

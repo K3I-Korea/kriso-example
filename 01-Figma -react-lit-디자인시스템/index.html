@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@k3i/ds 데모</title>
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+    <script type="module" src="/src/index.ts"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 32px;
+        background: var(--ds-semantic-surface-alt);
+        color: var(--ds-semantic-text);
+        font: var(--ds-font-body);
+      }
+      main { max-width: 880px; margin: 0 auto; display: grid; gap: 24px; }
+      .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+      h1 { font: var(--ds-font-title); margin: 0; }
+      pre { background: var(--ds-semantic-surface); padding: 12px; border-radius: 8px; font-size: 12px; overflow:auto; margin:0 }
+
+      /* ===== 실험: "다른 팀이 넣은 공격적인 전역 CSS" =====
+         .hostile 안에서 일반 <button>/<input> 은 깨지지만
+         <ds-*> 컴포넌트는 Shadow DOM 덕분에 그대로 유지된다. */
+      .hostile button,
+      .hostile input {
+        all: revert;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        font-family: "Courier New", monospace !important;
+        background: yellow !important;
+        color: red !important;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="row" style="justify-content: space-between">
+        <h1>@k3i/ds — Lit 디자인 시스템</h1>
+        <ds-button id="theme" variant="secondary" size="sm">다크 테마 전환</ds-button>
+      </div>
+
+      <ds-card elevated>
+        <h2 slot="header">Button variants / sizes</h2>
+        <div class="row">
+          <ds-button variant="primary">Primary</ds-button>
+          <ds-button variant="secondary">Secondary</ds-button>
+          <ds-button variant="ghost">Ghost</ds-button>
+          <ds-button variant="danger">Danger</ds-button>
+          <ds-button disabled>Disabled</ds-button>
+          <ds-button loading>저장 중</ds-button>
+        </div>
+        <div class="row">
+          <ds-button size="sm">Small</ds-button>
+          <ds-button size="md">Medium</ds-button>
+          <ds-button size="lg">Large</ds-button>
+        </div>
+      </ds-card>
+
+      <div class="grid">
+        <ds-card class="hostile">
+          <h2 slot="header">전역 CSS 공격 실험</h2>
+          <p style="margin:0 0 12px">같은 영역에 공격적인 전역 CSS가 걸려 있습니다.</p>
+          <div class="row">
+            <button>일반 &lt;button&gt;</button>
+            <ds-button>ds-button</ds-button>
+          </div>
+          <div style="display:grid; gap:8px; margin-top:12px">
+            <input placeholder="일반 <input>" />
+            <ds-input placeholder="ds-input"></ds-input>
+          </div>
+        </ds-card>
+
+        <ds-card>
+          <h2 slot="header">폼 연동 (ElementInternals)</h2>
+          <form id="signup" style="display:grid; gap:12px" novalidate>
+            <ds-input name="name" label="이름" required error-text="이름을 입력하세요"></ds-input>
+            <ds-input name="email" type="email" label="이메일" required
+              help-text="업무용 이메일" error-text="올바른 이메일 형식이 아닙니다"></ds-input>
+            <div class="row" style="justify-content:flex-end">
+              <ds-button type="reset" variant="ghost">초기화</ds-button>
+              <ds-button type="submit">가입</ds-button>
+            </div>
+          </form>
+          <pre slot="footer" id="out" style="flex:1">FormData 가 여기 표시됩니다</pre>
+        </ds-card>
+      </div>
+    </main>
+
+    <script type="module">
+      document.querySelector("#theme").addEventListener("click", () => {
+        const root = document.documentElement;
+        root.dataset.theme = root.dataset.theme === "dark" ? "" : "dark";
+      });
+
+      const form = document.querySelector("#signup");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fields = [...form.querySelectorAll("ds-input")];
+        const ok = fields.map((f) => f.checkValidity()).every(Boolean);
+        document.querySelector("#out").textContent = ok
+          ? JSON.stringify(Object.fromEntries(new FormData(form)), null, 2)
+          : "검증 실패 — 빨간 필드를 확인하세요";
+      });
+    </script>
+  </body>
+</html>

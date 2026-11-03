@@ -1,0 +1,57 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --ds-color-brand-50: #edf2ff;
+  --ds-color-brand-300: #91a7ff;
+  --ds-color-brand-500: #4c6ef5;
+  --ds-color-brand-600: #3b5bdb;
+  --ds-color-brand-700: #364fc7;
+  --ds-color-gray-0: #ffffff;
+  --ds-color-gray-50: #f8f9fa;
+  --ds-color-gray-200: #e9ecef;
+  --ds-color-gray-400: #adb5bd;
+  --ds-color-gray-600: #495057;
+  --ds-color-gray-800: #212529;
+  --ds-color-gray-900: #121417;
+  --ds-color-red-500: #e03131;
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-6: 24px;
+  --ds-radius-sm: 4px;
+  --ds-radius-md: 8px;
+  --ds-radius-lg: 12px;
+  --ds-font-family-base: Pretendard, -apple-system, 'Noto Sans KR', sans-serif;
+  --ds-shadow-card: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
+  --ds-semantic-primary: var(--ds-color-brand-600);
+  --ds-semantic-primary-hover: var(--ds-color-brand-700);
+  --ds-semantic-on-primary: var(--ds-color-gray-0);
+  --ds-semantic-surface: var(--ds-color-gray-0);
+  --ds-semantic-surface-alt: var(--ds-color-gray-50);
+  --ds-semantic-border: var(--ds-color-gray-200);
+  --ds-semantic-text: var(--ds-color-gray-800);
+  --ds-semantic-text-muted: var(--ds-color-gray-600);
+  --ds-semantic-danger: var(--ds-color-red-500);
+  --ds-semantic-focus-ring: var(--ds-color-brand-300);
+  --ds-font-label: 600 14px/20px var(--ds-font-family-base);
+  --ds-font-body: 400 14px/22px var(--ds-font-family-base);
+  --ds-font-title: 700 18px/26px var(--ds-font-family-base);
+}
+
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root[data-theme="dark"], .ds-theme-dark {
+  --ds-semantic-primary: var(--ds-color-brand-300);
+  --ds-semantic-primary-hover: var(--ds-color-brand-50);
+  --ds-semantic-on-primary: var(--ds-color-gray-900);
+  --ds-semantic-surface: var(--ds-color-gray-900);
+  --ds-semantic-surface-alt: var(--ds-color-gray-800);
+  --ds-semantic-border: var(--ds-color-gray-600);
+  --ds-semantic-text: var(--ds-color-gray-50);
+  --ds-semantic-text-muted: var(--ds-color-gray-400);
+}

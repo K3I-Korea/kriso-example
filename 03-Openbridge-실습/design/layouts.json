@@ -1,0 +1,24 @@
+{
+  "$description": "Layout 층. CSS grid-template-areas 문자열로 슬롯 자리를 정의한다. 슬롯 이름은 Figma 프레임 이름·CSS grid-area·view 의 slots 키와 같은 문자열이어야 한다.",
+  "layouts": {
+    "l1-grid": {
+      "description": "L1 종합 — 왼쪽 큰 계기, 가운데 보조 계기, 오른쪽 수치 열",
+      "columns": "1.4fr 1fr 1fr",
+      "rows": "1fr 1fr 1fr",
+      "areas": [
+        "primary secondary kpi-1",
+        "primary secondary kpi-2",
+        "primary tertiary  kpi-3"
+      ]
+    },
+    "l2-split": {
+      "description": "L2 근거 — 위 3칸 수치, 아래 넓은 상세",
+      "columns": "1fr 1fr 1fr",
+      "rows": "auto 1fr",
+      "areas": [
+        "kpi-1 kpi-2 kpi-3",
+        "detail detail detail"
+      ]
+    }
+  }
+}
