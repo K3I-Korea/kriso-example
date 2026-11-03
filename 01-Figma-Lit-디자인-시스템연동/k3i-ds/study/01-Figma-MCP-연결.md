@@ -6,7 +6,7 @@
 
 | 준비물 | 확인 |
 |---|---|
-| Claude Code (터미널) | 설치돼 있고 `k3i-ds` 폴더에서 열려 있어야 한다 |
+| Claude Code (터미널) | 설치돼 있고 `01-Figma-Lit-디자인-시스템연동/k3i-ds` 폴더에서 열려 있어야 한다 |
 | Figma 계정 | 로그인돼 있어야 한다 |
 | **Figma 데스크톱 앱** | 플러그인 실행에 쓴다. 웹이 아니라 데스크톱 앱이 필요하다 |
 | 00장의 `npm install` | 끝나 있어야 한다 |
@@ -47,7 +47,7 @@ claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp
 
 ## 1-4. 연결이 됐는지 확인한다
 
-`k3i-ds` 폴더를 연 Claude Code 에서 아래를 그대로 입력한다.
+`01-Figma-Lit-디자인-시스템연동/k3i-ds` 폴더를 연 Claude Code 에서 아래를 그대로 입력한다.
 
 ```
 Figma MCP 에서 쓸 수 있는 도구 목록을 보여주고, 각각 읽기/쓰기 중 무엇인지 표로 정리해줘.
@@ -57,7 +57,7 @@ Figma MCP 에서 쓸 수 있는 도구 목록을 보여주고, 각각 읽기/쓰
 
 ## 1-5. CLAUDE.md 가 규칙을 대신 기억한다
 
-`k3i-ds` 폴더에는 `CLAUDE.md` 파일이 있다. Claude Code 는 폴더를 열 때 이 파일을 자동으로 읽는다. 여기에는 **토큰·컴포넌트의 이름을 Figma 와 코드에서 어떻게 맞출지**가 표로 적혀 있다(예: `tokens.json` 의 `color.brand.600` ↔ Figma `Primitives / color/brand/600` ↔ CSS `--ds-color-brand-600`).
+`01-Figma-Lit-디자인-시스템연동/k3i-ds` 폴더에는 `CLAUDE.md` 파일이 있다. Claude Code 는 폴더를 열 때 이 파일을 자동으로 읽는다. 여기에는 **토큰·컴포넌트의 이름을 Figma 와 코드에서 어떻게 맞출지**가 표로 적혀 있다(예: `tokens.json` 의 `color.brand.600` ↔ Figma `Primitives / color/brand/600` ↔ CSS `--ds-color-brand-600`).
 
 그래서 다음 장부터 지시를 내릴 때 이름 규칙을 매번 설명하지 않아도 된다. 한 번 편집기로 `CLAUDE.md` 를 열어 "이름 매핑 규칙" 표를 눈으로 훑어 둔다. 어떤 규칙을 Claude Code 가 따를지 알고 있으면 결과를 확인하기 쉽다.
 
