@@ -33,8 +33,10 @@ Figma 속성 이름·값은 **코드의 attribute 이름·값과 글자 그대�
 |---|---|---|---|
 | `<ds-button>` | `ds-button` | `variant`: primary·secondary·ghost·danger / `size`: sm·md·lg / `state`: default·hover·disabled·loading | Text `label`, Boolean `iconStart` |
 | `<ds-input>` | `ds-input` | `state`: default·focus·invalid·disabled | Text `label`, `placeholder`, `helpText`, Boolean `required` |
+| `<ds-switch>` | `ds-switch` | `checked`: false·true / `state`: default·pressed·disabled | Text `label` |
 | `<ds-card>` | `ds-card` | `elevated`: false·true | Slot 영역은 Auto layout 프레임 `header`/`body`/`footer` |
 
+- 상태 구분: `@property`(외부 제어: checked, disabled, loading, invalid)와 `@state`(내부 전용: pressed)는 둘 다 Figma variant 로 그리되, **Code Connect 에는 `@property` 만 매핑**한다 (내부 상태는 코드에서 지정할 수 없으므로).
 - 모든 레이아웃은 **Auto layout** + 간격/패딩/반경은 **변수 바인딩** (숫자 직접 입력 금지).
 - 색상 fill/stroke 는 **Semantic 변수만** 바인딩 (Primitives 직접 바인딩 금지).
 

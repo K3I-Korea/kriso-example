@@ -22,6 +22,7 @@ Lit 컴포넌트  (src/components/*.ts)   ← 디자인의 단일 진실 공급�
 ```bash
 npm install
 npm run dev      # 토큰 빌드 + 데모(index.html) 실행 → http://localhost:5173
+                 # 상태 실습 → http://localhost:5173/demo/react.html
 npm run build    # dist/ 에 라이브러리 + 타입 + tokens.css 생성
 ```
 
@@ -36,6 +37,8 @@ npm run build    # dist/ 에 라이브러리 + 타입 + tokens.css 생성
 | `src/components/ds-button.ts` | variant 4종 · size 3종 · loading · 폼 submit/reset |
 | `src/components/ds-input.ts` | label/help/error, 폼 연동(ElementInternals), 유효성 검사 |
 | `src/components/ds-card.ts` | header/body/footer 슬롯, elevated |
+| `src/components/ds-switch.ts` | 상태 실습용: `@property` checked, `@state` pressed, 취소 가능한 `ds-change` |
+| `demo/react.html` | **상태 실습** — React state → Lit → DOM 속성 → Figma variant 실시간 관찰 |
 | `src/react/index.ts` | `@lit/react` 기반 React 래퍼 |
 | `examples/` | React, Vue에서 사용하는 예제 |
 | `index.html` | 데모 + "전역 CSS 공격" 실험 + 폼 연동 테스트 |

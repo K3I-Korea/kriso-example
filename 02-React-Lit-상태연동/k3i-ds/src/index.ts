@@ -3,3 +3,4 @@ export { DsButton } from "./components/ds-button.js";
 export type { ButtonVariant, ButtonSize } from "./components/ds-button.js";
 export { DsInput } from "./components/ds-input.js";
 export { DsCard } from "./components/ds-card.js";
+export { DsSwitch } from "./components/ds-switch.js";

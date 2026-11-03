@@ -9,6 +9,7 @@ import { createComponent, type EventName } from "@lit/react";
 import { DsButton } from "../components/ds-button.js";
 import { DsInput } from "../components/ds-input.js";
 import { DsCard } from "../components/ds-card.js";
+import { DsSwitch } from "../components/ds-switch.js";
 
 export const Button = createComponent({
   tagName: "ds-button",
@@ -30,4 +31,13 @@ export const Card = createComponent({
   tagName: "ds-card",
   elementClass: DsCard,
   react: React,
+});
+
+export const Switch = createComponent({
+  tagName: "ds-switch",
+  elementClass: DsSwitch,
+  react: React,
+  events: {
+    onDsChange: "ds-change" as EventName<CustomEvent<{ checked: boolean }>>,
+  },
 });

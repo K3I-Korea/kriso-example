@@ -145,3 +145,68 @@ index.html 데모 페이지를 Figma Playground 에 편집 가능한 레이어�
 **정리 질문**
 - 어느 방향이 디자인을 더 잘 보존했나? 이유는?
 - 하드코딩 값이 생긴 곳은 어디였고, CLAUDE.md 에 어떤 규칙을 추가하면 막을 수 있나? → 직접 CLAUDE.md 를 개선해 보기
+
+---
+
+## L8. 상태 — Figma variant ↔ Lit 속성 ↔ React state
+
+**개념**: 같은 "상태"가 세 곳에서 다른 이름으로 존재합니다. 이 셋을 1:1로 맞추는 것이 디자인 시스템 연동의 핵심입니다.
+
+| 층 | 표현 | 예 (자율운항 스위치) |
+|---|---|---|
+| Figma | Component Set 의 **variant** | `checked=true, state=default` |
+| Lit | `@property({ reflect: true })` → **HTML 속성** | `<ds-switch checked>` |
+| React | **state** → props 로 전달 | `const [autopilot, setAutopilot] = useState(false)` |
+
+상태의 소유자는 하나입니다. 이 실습에서는 **React 가 소유**하고, Lit 은 그리기와 사용자 입력 전달만 합니다.
+
+```
+React state ──props──▶ Lit @property ──reflect──▶ HTML 속성 ──(규칙)──▶ Figma variant
+     ▲                      │
+     └── ds-change 이벤트 ◀──┘  (React 가 preventDefault 하면 Lit 이 되돌림)
+```
+
+### 8-1. 코드에서 먼저 관찰하기
+```bash
+npm run dev   # → http://localhost:5173/demo/react.html
+```
+- 오른쪽 **②③ 표**: 왼쪽을 조작할 때마다 DOM 속성과 대응되는 Figma variant 가 실시간으로 바뀝니다.
+- **원격 잠금**을 켜고 자율운항 스위치를 눌러 보세요. Lit 이 먼저 토글 → `ds-change` 발생 → React 가 `preventDefault()` → Lit 이 원래 값으로 복구. (`ds-switch.ts` 의 `toggle()` 참고)
+- 스위치를 누르고 있는 동안 thumb 이 늘어납니다 = `@state pressed`. **②표에는 나타나지 않습니다** → 내부 상태는 DOM 속성으로 노출되지 않기 때문.
+
+### 8-2. Figma 에 ds-switch 만들기
+```
+<FILE_URL> 의 Components 페이지에 ds-switch Component Set 을 만들어줘.
+src/components/ds-switch.ts 의 static styles 를 읽고 그대로 재현해.
+- variant: checked(false/true) × state(default/pressed/disabled) = 6개
+- Text 속성 label
+- pressed 는 thumb 너비 24px, disabled 는 opacity 45%
+- 색은 Semantic 변수에만 바인딩 (꺼짐 트랙 = border, 켜짐 트랙 = primary)
+CLAUDE.md 매핑 표를 따르고, 다 만들면 6개 variant 이름을 나열해.
+```
+
+### 8-3. 상태 화면을 Figma 에 "스냅샷"으로 그리기
+```
+demo/state-lab.tsx 를 읽고, 자율운항 제어 패널이 가질 수 있는 화면 상태를 정리해줘
+(예: 꺼짐 / 켜짐·입력 정상 / 켜짐·입력 오류 / 적용 중 / 잠금으로 거부됨).
+그다음 <FILE_URL> 의 Playground 에 상태별 프레임을 나란히 그려줘.
+각 프레임은 ds-card, ds-switch, ds-input, ds-button 인스턴스만 쓰고,
+toFigma 매핑 함수와 똑같은 variant 를 골라서 설정해. 프레임 이름은 상태 이름으로.
+```
+→ 디자이너와 개발자가 **"이 상태에선 이렇게 보인다"** 를 같은 그림으로 합의하는 산출물이 됩니다.
+
+### 8-4. 역방향: Figma 에서 상태 추가 → 코드 반영
+1. Figma 에서 ds-button 에 `state=success` variant 를 직접 추가 (초록 배경, 체크 아이콘)
+2. Claude Code:
+```
+Figma 의 ds-button Component Set 을 읽어서 코드에 없는 variant 를 찾아줘.
+있으면 ds-button.ts 에 해당 @property 와 스타일을 추가하고,
+demo/state-lab.tsx 의 toFigma 매핑과 "적용 완료" 후 1초간 success 상태를 보여주는 로직을 추가해.
+색은 tokens.json 에 semantic.success 토큰을 먼저 만들고 그걸 써.
+```
+→ 토큰(L1) · 컴포넌트(L3) · 상태(L8) 가 한 번에 연결되는 것을 확인.
+
+**정리 질문**
+- `pressed` 를 React 가 제어하게 하면 무엇이 나빠질까? (힌트: 매 포인터 이벤트마다 React 리렌더)
+- Code Connect 에 `pressed` 를 매핑하지 않은 이유는?
+- 잠금 거부를 Lit 이 아니라 React 쪽에서만 처리하면(`checked` 를 안 바꾸기만 하면) 어떤 문제가 생길까? → `toggle()` 에서 `dispatchEvent` 반환값 검사를 지우고 실험해 보기
