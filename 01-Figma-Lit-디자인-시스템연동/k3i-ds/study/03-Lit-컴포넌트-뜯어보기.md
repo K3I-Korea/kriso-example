@@ -25,6 +25,28 @@ export { DsSwitch } from "./components/ds-switch.js";
 - 원래 코드를 고치지 않고 "이 클래스를 등록해라", "이 속성을 반응형으로 만들어라" 같은 동작을 선언하듯 얹는다.
 - 자바스크립트 표준 데코레이터는 비교적 최근에 자리 잡은 언어 기능이고, Lit 은 전통적으로 **TypeScript 의 실험적 데코레이터**를 함께 지원한다. 이 프로젝트는 그 실험적 데코레이터를 켜서 쓴다. 그래서 `tsconfig.json` 에 `experimentalDecorators: true` 와 `useDefineForClassFields: false` 가 들어 있다(0-7 의 tsconfig 설명과 이어진다).
 
+### 데코레이터는 어디서 오나
+
+`@customElement`·`@property` 같은 데코레이터는 **Lit 이 제공한다.** `ds-button.ts` 맨 위에서 가져온다.
+
+```ts
+import { LitElement, html, css } from "lit";
+import { customElement, property } from "lit/decorators.js";
+```
+
+- `@customElement`·`@property`·`@state`·`@query` → **Lit 의 `lit/decorators.js`** 모듈에서 온다.
+- `LitElement`·`html`·`css` → Lit 코어(`"lit"`)에서 온다.
+
+다만 세 가지를 나눠 보면 더 분명하다.
+
+| 무엇 | 누가 제공하나 |
+|---|---|
+| `@` 라는 데코레이터 **문법 자체** | 자바스크립트/TypeScript 언어 (Lit 이 아니다) |
+| `customElement`·`property` 같은 데코레이터 **함수** | **Lit** (`lit/decorators.js`) |
+| 실제 태그 등록(`customElements.define`) | **브라우저 표준**(Custom Elements) — `@customElement` 가 속으로 이걸 부른다 |
+
+즉 `@customElement("ds-button")` 은 "Lit 이 만든 함수를, 언어의 데코레이터 문법으로 클래스에 붙여, 브라우저 표준 등록을 대신 호출"하는 것이다. 그래서 `package.json` 의 `dependencies` 에 `lit` 이 있어야 이 import 가 된다(0-7 참고).
+
 ### `@customElement("ds-button")` 의 역할
 
 - 클래스를 **브라우저에 커스텀 엘리먼트로 등록**한다. 즉 `customElements.define("ds-button", DsButton)` 을 대신 불러 준다.
