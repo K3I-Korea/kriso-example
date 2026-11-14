@@ -5,7 +5,7 @@
 export const ColorBrand50 = "#edf2ff";
 export const ColorBrand300 = "#91a7ff";
 export const ColorBrand500 = "#4c6ef5";
-export const ColorBrand600 = "#3b5bdb";
+export const ColorBrand600 = "#5f3dc4";
 export const ColorBrand700 = "#364fc7";
 export const ColorGray0 = "#ffffff";
 export const ColorGray50 = "#f8f9fa";
@@ -15,7 +15,7 @@ export const ColorGray600 = "#495057";
 export const ColorGray800 = "#212529";
 export const ColorGray900 = "#121417";
 export const ColorRed500 = "#e03131";
-export const SemanticPrimary = "#3b5bdb";
+export const SemanticPrimary = "#5f3dc4";
 export const SemanticPrimaryHover = "#364fc7";
 export const SemanticOnPrimary = "#ffffff";
 export const SemanticSurface = "#ffffff";
