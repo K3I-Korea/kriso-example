@@ -14,6 +14,10 @@ Figma 의 **Component Set** 은 변형(variant)을 묶은 것이고, 그 variant
 | `<ds-input>` | `ds-input` | `state`: default·focus·invalid·disabled | Text `label`, `placeholder`, `helpText`, Boolean `required` |
 | `<ds-card>` | `ds-card` | `elevated`: false·true | 슬롯은 Auto layout 프레임 `header`/`body`/`footer` |
 
+> **📦 Component Set 이 아니라 개별 컴포넌트를 여러 개 만들면?**
+>
+> `ds-button/primary`·`ds-button/secondary` 처럼 **따로따로** 만들면, 하나의 `variant` 속성으로 묶이지 않는다. 그러면 Lit 의 `@property({ reflect: true }) variant`(03장)와 1:1로 맞출 수 없다. MCP 와 Code Connect(05장)도 "Figma 의 이 속성 = 코드의 저 속성" 으로 자동 대응시키지 못해, 사람이 매번 손으로 이어야 한다. Component Set 으로 묶어 **variant 속성 하나에 값을 넣는 것**이 코드와 맞추는 핵심이다.
+
 ## 4-2. 먼저 토큰 문서를 그려 본다 (Foundations)
 
 컴포넌트에 앞서, 02장에서 올린 토큰을 눈으로 보는 문서를 만들면 Figma 쪽 변수가 제대로 올라갔는지 확인하기 좋다. Claude Code 에게(`<FILE_URL>` 은 01장의 `ds` 파일 주소):
@@ -50,6 +54,10 @@ CLAUDE.md 의 컴포넌트 매핑 표를 지켜.
 
 - 모든 레이아웃은 **Auto layout**, 간격·패딩·반경은 **변수 바인딩**(숫자 직접 입력 금지).
 - 색 fill·stroke 는 **Semantic 변수만** 바인딩(Primitives 직접 바인딩 금지).
+
+> **📦 Auto layout·변수 바인딩 대신 숫자를 직접 넣으면?**
+>
+> 간격·패딩·반경에 `16` 같은 숫자를 직접 적으면, `tokens.json`(토큰)을 바꿔도 Figma 는 안 따라온다. 코드는 `var(--ds-space-4)` 로 토큰을 쓰는데 Figma 만 고정 숫자라, 둘의 값이 어긋난다. Auto layout 을 안 쓰면 라벨이 길어지거나 `size` 가 바뀔 때 레이아웃이 함께 맞춰지지 않는다. 그래서 숫자 대신 **변수에 바인딩하고 Auto layout 을** 쓴다.
 
 ## 4-4. 내부 상태는 그리되 코드와 구분한다
 

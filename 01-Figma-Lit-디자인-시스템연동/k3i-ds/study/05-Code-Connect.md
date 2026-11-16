@@ -4,6 +4,10 @@ Code Connect 는 Figma 컴포넌트와 실제 코드를 이어 준다. 이어 �
 
 > Code Connect 게시는 Figma Organization / Enterprise 플랜의 Dev/Full 시트가 필요하다. 플랜이 안 되면 이 장의 매핑 파일을 읽고 구조만 이해한 뒤 넘어가도 된다.
 
+> **📦 Code Connect 가 없으면?**
+>
+> 연결하지 않으면 MCP·Dev Mode 는 Figma 디자인의 모양만 보고 코드를 **추측**한다. 기본값은 React + Tailwind 라, 이 프로젝트가 쓰는 `<ds-button>` 과는 다른 코드가 나온다. Code Connect 를 이어 두면, 추측 대신 `<ds-button variant="primary">` 처럼 **이미 있는 컴포넌트를 쓰는 진짜 코드**를 돌려준다. 이 장이 하는 일이 바로 그 연결이다.
+
 ## 5-1. 설정 파일 — figma.config.json
 
 `figma.config.json` 을 연다. 이 프로젝트가 HTML(웹 컴포넌트)용 Code Connect 를 쓰고, 매핑 파일을 어디서 찾을지 적혀 있다.
@@ -66,6 +70,10 @@ npx figma connect publish --token <FIGMA_ACCESS_TOKEN>
 ```
 
 `<FIGMA_ACCESS_TOKEN>` 은 Figma 설정에서 만든 개인 토큰이다. 게시가 끝나면 Figma 에 코드 연결이 올라간다.
+
+> **📦 게시 플랜(Organization/Enterprise)이 안 되면?**
+>
+> `npx figma connect publish` 는 Figma 의 Organization/Enterprise 플랜이라야 올라간다. 플랜이 안 되더라도 **학습은 된다.** `figma/code-connect/ds-button.figma.ts` 를 열어 세 부분(노드 링크·`props` 매핑·`example`)이 어떻게 생겼는지 읽으면, Code Connect 가 "무엇을 무엇에 잇는지" 는 그대로 이해할 수 있다. 게시(`publish`)만 건너뛰고 나머지(매핑 파일 작성·점검)는 그대로 해 본다.
 
 ## 5-5. 확인한다
 

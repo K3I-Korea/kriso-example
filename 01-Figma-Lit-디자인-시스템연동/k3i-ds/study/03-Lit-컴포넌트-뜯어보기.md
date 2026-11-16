@@ -121,6 +121,15 @@ button {
 
 **④ 공개 지점.** 주석의 `@csspart base` 와 `@cssprop --ds-button-min-width` 는 "바깥에서 이만큼은 손대도 된다"고 문서에 밝힌 것이다. 바깥 앱은 `ds-button::part(base)` 나 `--ds-button-min-width` 로만 미세 조정한다.
 
+> **📦 `@property` 가 아니라 `@state` 면? — 바깥에 보이는 상태 vs 내부 전용**
+>
+> 둘 다 "값이 바뀌면 다시 그리는" 반응형 속성이지만, 바깥에 보이느냐가 다르다.
+>
+> - `@property` : **바깥(HTML·React 등)이 제어하는 공개 상태.** `reflect: true` 를 주면 HTML 속성으로도 나가서, CSS `:host([checked])` 와 Figma variant 가 그 값을 본다. 예: `ds-switch` 의 `checked`·`disabled`.
+> - `@state` : **컴포넌트 내부 전용 상태.** HTML 속성으로 내보내지 않고, 바깥에서 지정할 수 없다. 예: `ds-switch` 의 `pressed`(누르는 동안만 thumb 이 늘어남), `ds-card` 의 `hasHeader`·`hasFooter`(슬롯이 찼는지).
+>
+> `ds-switch` 의 `pressed` 를 `@property` 로 바꾸면? 누를 때마다 HTML 속성이 붙었다 떨어지며 DOM 에 노출되고, 바깥이 건드릴 수 있게 된다. 내부에서만 쓰는 값인데 공개 API 가 돼 버린다. 그래서 "바깥이 소유하는 상태" 만 `@property`, 나머지는 `@state` 로 가른다. 이 구분이 상태 연동의 핵심이라 **02강에서 `ds-switch` 로 깊이 다룬다.**
+
 ## 3-4. ds-input — 폼과 접근성까지
 
 `src/components/ds-input.ts` 를 연다. 버튼보다 하는 일이 많다.
@@ -128,6 +137,17 @@ button {
 - `label`·`<input>`·도움말을 **모두 같은 Shadow DOM 안에 둔다.** `<label for="input">` 과 `aria-describedby` 같은 연결이 경계를 넘지 않게 하기 위해서다.
 - 값이 바뀌면 `ds-input` 이벤트를, 확정되면(blur/enter) `ds-change` 이벤트를 쏜다. 둘 다 `bubbles: true, composed: true` 라서 Shadow 경계 밖까지 전해진다.
 - `ElementInternals` 로 폼과 잇는다. `setFormValue(value)` 로 FormData 에 값을 넣고, `checkValidity()` 로 검증한 뒤 틀리면 `invalid` 를 켜서 빨간 테두리와 오류 글을 보여 준다. 00장의 폼 실습에서 본 동작이 이것이다.
+
+> **📦 `formAssociated` 가 없으면? — Shadow DOM 속 폼 요소는 바깥 `<form>` 을 모른다**
+>
+> Shadow DOM 은 컴포넌트 안쪽을 격리한다. 그래서 그 안의 `<button>`·`<input>` 은 바깥 `<form>` 과 저절로 이어지지 않는다. 그대로 두면 제출(submit)·초기화(reset)·검증·`FormData` 수집이 전부 안 된다.
+>
+> 이걸 잇는 표준이 `static formAssociated = true` + `attachInternals()` 다.
+>
+> - `ds-button`(`ds-button.ts` 22·125줄): `type="submit"` 이면 `form.requestSubmit()`, `type="reset"` 이면 `form.reset()` 을 직접 불러 준다.
+> - `ds-input`(`ds-input.ts` 18·89줄): `internals.setFormValue(value)` 로 `FormData` 에 값을 넣고, `setValidity(...)` 로 검증 결과를 폼에 전한다.
+>
+> `formAssociated` 를 빼면 00장에서 본 폼 실습(빈 폼 제출 시 빨간 오류, `FormData` 출력)이 동작하지 않는다. 직접 만든 요소를 기본 폼 컨트롤처럼 쓰게 해 주는 장치다.
 
 ## 3-5. ds-card — 슬롯으로 영역을 연다
 
@@ -145,6 +165,14 @@ button {
 :host { font: var(--ds-font-body, 400 14px/22px sans-serif); color: var(--ds-semantic-text, #212529); }
 :focus-visible { outline: 3px solid var(--ds-semantic-focus-ring, #91a7ff); outline-offset: 2px; }
 ```
+
+> **📦 `var(--ds-font-body, 400 14px/22px sans-serif)` 의 뒤 값은 왜 있나? — 토큰이 없을 때의 대비 값**
+>
+> `var(--변수, 대비값)` 에서 쉼표 뒤는 **그 변수가 아직 없을 때 쓸 값**이다(02장의 `var()` 설명). 컴포넌트 스타일 곳곳에 이 대비 값이 들어 있다.
+>
+> 왜 두나: 컴포넌트는 `tokens.css` 가 로드돼야 `--ds-*` 값을 받는다. 토큰 CSS 를 아직 안 불러온 상황(불러오기 전·누락·독립 실행)에서도 글자가 안 보이거나 레이아웃이 틀어지지 않도록, "토큰이 없으면 이 값이라도 써라" 를 넣어 둔 것이다. 토큰이 제대로 로드되면 대비 값은 무시되고 토큰 값이 쓰인다.
+>
+> 그래서 `shared.ts` 의 `baseStyles` 는 `--ds-font-body` 와 `--ds-semantic-text` 에 각각 대비 값을 둔다. 토큰이 기본이고, 대비 값은 없을 때만 쓰는 예비다.
 
 ## 3-7. 디자인을 지키는 세 가지 장치
 
@@ -169,6 +197,7 @@ button {
 - 데코레이터가 무엇인지, `@customElement` 가 클래스를 `<ds-button>` 태그로 등록한다는 것을 봤다.
 - `<ds-button>` 같은 비표준 태그가 커스텀 엘리먼트 표준으로 동작하는 원리를 봤다.
 - `ds-button`·`ds-input`·`ds-card` 가 토큰만 쓰고, 속성으로 변형을 고르고, 폼·슬롯을 어떻게 다루는지 읽었다.
+- `@property`(공개 상태) vs `@state`(내부 전용), `formAssociated`(폼 연동), 토큰 대비 값이 "없을 때" 어떻게 되는지를 박스로 봤다.
 - 디자인을 지키는 세 장치(격리·변수·공개 지점)를 정리했다.
 
 다음 **04장**에서는 이 컴포넌트와 똑같은 모양·이름으로 Figma 에 Component Set 을 그린다.
