@@ -86,7 +86,7 @@ export class DsButton extends LitElement {
       }
       :host([variant="danger"]) button {
         background: var(--ds-semantic-danger);
-        color: var(--ds-color-gray-0);
+        color: var(--ds-semantic-on-danger);
       }
 
       /* --- 상태 --- */

@@ -78,6 +78,9 @@ const TOKENS = {
       "danger": {
         "$value": "{color.red.500}"
       },
+      "on-danger": {
+        "$value": "{color.gray.0}"
+      },
       "focus-ring": {
         "$value": "{color.brand.300}"
       }
