@@ -88,6 +88,14 @@ npm run tokens
 >
 > `var(--x, 기본값)` 처럼 대비 값도 줄 수 있다 — `--x` 가 없으면 기본값을 쓴다(03장 컴포넌트에서 봤다). 그래서 다크의 `--ds-semantic-primary: var(--ds-color-brand-300)` 은 "주요 색을 `brand-300` 변수에 담긴 값으로 한다" 는 뜻이다.
 
+> **📦 `ds-`·`--ds-` 의 `ds` 는 design system(디자인 시스템)**
+>
+> 접두사 `ds` 는 **design system(디자인 시스템)** 의 약자다. 이 프로젝트 자체가 디자인 시스템이라, 거기 속한 것에 모두 `ds-`/`--ds-` 를 붙여 한 묶음임을 표시한다. CSS 변수 `--ds-semantic-primary`, 컴포넌트 태그 `ds-button`, Figma 변수 이름, 패키지 `@k3i/ds` 가 전부 같은 접두사를 쓴다.
+>
+> CSS 변수의 `--ds-` 는 빌드 스크립트의 `const PREFIX = "ds"` 에서 나온다(0-7 의 build-tokens.mjs 해설). `@k3i/ds` 에서 `k3i` 는 조직(스코프) 이름이고, `ds` 가 "그 조직의 디자인 시스템" 이라는 뜻이다.
+>
+> 표준이 정한 게 아니라 저자가 고른 접두사다. 바꾸려면(예: `k3i-`) `PREFIX`, 각 컴포넌트의 `@customElement` 이름, HTML 태그를 함께 바꿔야 한다.
+
 ## 2-3. 토큰을 Figma 에 올리기 — 플러그인
 
 이제 같은 토큰을 Figma `ds` 파일의 변수로 만든다. 읽기 도구를 쓰지 않으므로 플랜 제한에 걸리지 않는다.
