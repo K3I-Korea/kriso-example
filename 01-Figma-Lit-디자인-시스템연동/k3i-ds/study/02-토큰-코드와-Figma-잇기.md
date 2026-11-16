@@ -59,6 +59,19 @@ npm run tokens
 
 **확인**: `npm run tokens` 를 돌린 뒤 `src/styles/tokens.css` 를 연다. `:root` 묶음에서 `--ds-semantic-primary` 를 찾고, 아래쪽 `:root[data-theme="dark"]` 묶음에서 같은 변수가 다른 값으로 적혀 있는지 본다. 00장에서 "다크 테마 전환" 버튼이 바꾼 것이 바로 이 두 번째 묶음을 켜는 것이었다.
 
+> **📦 `:` 는 가상 클래스 표시 — `:root` 가 그 예**
+>
+> `:root` 의 맨 앞 `:` 은 **가상 클래스(pseudo-class)** 표시다. 가상 클래스는 요소의 상태·위치·지위를 보고 고르는 선택자다(실제 `class` 속성이 아니라 브라우저가 가상으로 붙여 준다). `:root` 는 그중 **문서 최상위 요소**(HTML 에서 `<html>`)를 고른다. `html` 로 써도 되지만 우선순위(specificity)가 조금 높아, 전역 CSS 변수를 둘 때 관례로 `:root` 를 쓴다.
+>
+> 헷갈리기 쉬운 `:` 하나와 `::` 둘:
+>
+> - `:` 하나 → **가상 클래스**(상태·위치를 고른다): `:root`, `:hover`, `:focus`, `:disabled`, `:host`, `:focus-visible`
+> - `::` 둘 → **가상 요소(pseudo-element)**(요소의 일부를 만들거나 꾸민다): `::before`, `::after`, `::placeholder`, `::part()`
+>
+> 같은 `:` 라도 **어디에 오느냐**에 따라 뜻이 다르다. 선택자 맨 앞이면 가상 클래스지만, `--ds-semantic-primary: {color.brand.600}` 처럼 **속성 선언**에 쓰인 `:` 은 "이름 : 값" 을 가르는 구분 기호일 뿐이다.
+>
+> 이 두 가지는 03장 컴포넌트에서 `:host([variant="primary"])`(가상 클래스)와 `ds-button::part(base)`(가상 요소)로 다시 나온다.
+
 ## 2-3. 토큰을 Figma 에 올리기 — 플러그인
 
 이제 같은 토큰을 Figma `ds` 파일의 변수로 만든다. 읽기 도구를 쓰지 않으므로 플랜 제한에 걸리지 않는다.
