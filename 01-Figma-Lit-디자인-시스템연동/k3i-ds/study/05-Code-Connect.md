@@ -65,7 +65,7 @@ Figma 속성 이름과 enum 값이 실제 컴포넌트와 일치하는지 MCP �
 ## 5-4. 게시하기
 
 ```bash
-npm i -D @figma/code-connect
+npm i -D @figma/code-connect@1   # v2 는 html 파서를 지원하지 않는다
 npx figma connect publish --token <FIGMA_ACCESS_TOKEN>
 ```
 

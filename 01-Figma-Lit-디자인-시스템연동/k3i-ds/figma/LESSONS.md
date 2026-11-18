@@ -120,7 +120,7 @@ Figma 속성 이름과 enum 값이 실제 컴포넌트와 일치하는지 MCP �
 같은 형식으로 ds-input, ds-card 용 파일도 만들어줘.
 ```
 ```bash
-npm i -D @figma/code-connect
+npm i -D @figma/code-connect@1   # v2 는 html 파서를 지원하지 않는다
 npx figma connect publish --token <FIGMA_ACCESS_TOKEN>   # Organization/Enterprise 필요
 ```
 
