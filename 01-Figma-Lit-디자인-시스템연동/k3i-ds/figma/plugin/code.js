@@ -80,6 +80,9 @@ const TOKENS = {
       },
       "focus-ring": {
         "$value": "{color.brand.300}"
+      },
+      "switch-thumb": {
+        "$value": "{color.gray.0}"
       }
     },
     "space": {

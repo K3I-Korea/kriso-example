@@ -58,7 +58,7 @@ export class DsSwitch extends LitElement {
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: var(--ds-color-gray-0);
+        background: var(--ds-semantic-switch-thumb);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         transition: transform 0.15s, width 0.15s;
       }
