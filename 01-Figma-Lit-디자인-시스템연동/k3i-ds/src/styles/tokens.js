@@ -25,6 +25,7 @@ export const SemanticText = "#212529";
 export const SemanticTextMuted = "#495057";
 export const SemanticDanger = "#e03131";
 export const SemanticFocusRing = "#91a7ff";
+export const SemanticSwitchThumb = "#ffffff";
 export const Space1 = "4px";
 export const Space2 = "8px";
 export const Space3 = "12px";

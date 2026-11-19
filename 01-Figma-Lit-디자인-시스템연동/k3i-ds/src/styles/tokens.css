@@ -36,6 +36,7 @@
   --ds-semantic-text-muted: var(--ds-color-gray-600);
   --ds-semantic-danger: var(--ds-color-red-500);
   --ds-semantic-focus-ring: var(--ds-color-brand-300);
+  --ds-semantic-switch-thumb: var(--ds-color-gray-0);
   --ds-font-label: 600 14px/20px var(--ds-font-family-base);
   --ds-font-body: 400 14px/22px var(--ds-font-family-base);
   --ds-font-title: 700 18px/26px var(--ds-font-family-base);
